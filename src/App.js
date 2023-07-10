@@ -1,24 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
-
+import React, { useState } from 'react';
+import ApiRead from './ApiRead';
 function App() {
+  const [name,setName]=useState();
+  const [namestore,setNamestore]=useState();
+  const[pass,setPass] =useState();
+  const[PassStore,setPassStore]=useState();
+
+  const nameEvent =(e)=>{
+    setName(e.target.value);
+  }
+  const passEvent =(e)=>{
+    setPass(e.target.value);
+  }
+ const submitHandler =(e)=>{
+  e.preventDefault();
+  setNamestore(name);
+  setPassStore(pass)
+ }
+ 
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+<>
+<form onSubmit={submitHandler}>
+  <label>name:</label>
+  <input type='text' onChange={nameEvent} value={name}/><br/>
+  <label>Password</label>
+  <input type='password' onChange={passEvent} value={pass}/><br/><br/>
+  <button type='submit'>click me</button><br/><br/>
+</form>
+name:{namestore}<br/><br/>
+password:{PassStore}<br/><br/><br/>
+<ApiRead/>
+</>
   );
 }
 
